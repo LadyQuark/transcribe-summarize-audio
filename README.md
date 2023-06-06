@@ -2,17 +2,11 @@ Create an environment and install all packages
 
 ```
 conda create --name transcribe python=3.8.13
-```
 
-```
 conda activate transcribe
-```
 
-```
 conda install notebook nb_conda_kernels
-```
 
-```
 pip3 install -r requirements.txt
 ```
    
