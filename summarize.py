@@ -6,14 +6,16 @@ import tiktoken
 import whisper
 from common import get_valid_filename
 from dotenv import load_dotenv, find_dotenv
+from distutils.util import strtobool
 from pathlib import Path
 from urllib.parse import urlparse
 
 load_dotenv(find_dotenv())
 
-verbose = os.getenv('VERBOSE') or False
-ENABLE_FP16 = os.getenv('FP16') or False
-MAX_TOKENS = os.getenv('SUMMARY_MAX_TOKENS') or 100
+verbose = bool(strtobool(os.getenv('VERBOSE', 'False')))
+ENABLE_FP16 = bool(strtobool(os.getenv('ENABLE_FP16', 'True')))
+MAX_TOKENS = int(os.getenv('SUMMARY_MAX_TOKENS', 100))
+
 TEMP_FOLDER = os.getenv('TEMP_FOLDER') or "temp"
 temp_path = Path(TEMP_FOLDER)
 temp_path.mkdir(parents=True, exist_ok=True)
