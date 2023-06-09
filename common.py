@@ -1,5 +1,6 @@
 import csv
 import re
+from distutils.util import strtobool
 
 def write_csv(filepath, data):
     headers = list(data.keys())
@@ -26,3 +27,10 @@ def get_valid_filename(name):
         print("Could not derive file name from '%s'" % name)
         return None
     return s
+
+def str_to_bool(value, default):
+    try:
+        result = bool(strtobool(value))
+    except (ValueError, AttributeError):
+        result = default
+    return result

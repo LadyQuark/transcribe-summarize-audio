@@ -4,16 +4,15 @@ import re
 import requests
 import tiktoken
 import whisper
-from common import get_valid_filename
+from common import get_valid_filename, str_to_bool
 from dotenv import load_dotenv, find_dotenv
-from distutils.util import strtobool
 from pathlib import Path
 from urllib.parse import urlparse
 
 load_dotenv(find_dotenv())
 
-verbose = bool(strtobool(os.getenv('VERBOSE', 'False')))
-ENABLE_FP16 = bool(strtobool(os.getenv('ENABLE_FP16', 'True')))
+verbose = str_to_bool(value=os.getenv('VERBOSE'), default=False)
+ENABLE_FP16 = str_to_bool(value=os.getenv('ENABLE_FP16'), default=True)
 MAX_TOKENS = int(os.getenv('SUMMARY_MAX_TOKENS', 100))
 
 TEMP_FOLDER = os.getenv('TEMP_FOLDER') or "temp"
